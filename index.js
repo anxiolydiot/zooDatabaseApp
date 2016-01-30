@@ -1,17 +1,15 @@
 var mysql = require('mysql');
 var prompt = require('prompt')
-  promp.start();
+  prompt.start();
   prompt.message = ''
 
-
-
-
 var connection = mysql.createConnection({
-  host:'Seans-MacBook-Pro.local',
-  user:'anxiolydiot',
+  host: 'localhost',
+  //'Seans-MacBook-Pro.local',
+  user:'root',
   password:'',
-  database:'zoo_db'
-})
+  database:'zooDB'
+});
 
 connection.connect(function(err){
   if (err){

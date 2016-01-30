@@ -1,11 +1,27 @@
 {
   "name": "zooapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "app to test mysql databases",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "anziolydiot",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.10.2",
+    "prompt": "^0.2.14"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anxiolydiot/zooDatabaseApp.git"
+  },
+  "keywords": [
+    "mysql"
+  ],
+  "bugs": {
+    "url": "https://github.com/anxiolydiot/zooDatabaseApp/issues"
+  },
+  "homepage": "https://github.com/anxiolydiot/zooDatabaseApp#readme"
 }
