@@ -45,15 +45,23 @@ var zoo = {
     prompt.get([
       'name',
       'type', 
-      'age'
+      'age',
+      'caretaker_id)'
     ], function(err, result){
-       var query = connection.query('insert into animals set ?'), //revisit after looking at docs again 
+       var query = 'insert into animals (name,type,age,caretaker_id) values (?,?,?,?)'
+       var adds = [result.name, result.type, result.age, result.caretaker_id]
+       connection.query(query, adds, function(err,result){
+        if (err) {throw err};
+        currentScope.menu();
+        curretScope.promptUser();
 
-      }
+       })
 
-      )
+      });
 
-  });
+  },
+
+  },
 currentScope.menu();
 currentScope.promptUser();
 
@@ -69,11 +77,40 @@ currentScope.promptUser();
     );
     currentScope.visit();
     currentScope.view(currentScope);
-  }
+  },
 
 var view : function(){
   var currentScope = input_scope;
-  console.log('')
+  console.log('Please Choose What you Would like to visit!');
+  prompt.get(['visit'], function (err,result){
+    if (result.visit === 'Q'){
+      currentScope.menu();
+    } 
+    else if (result.visit ==='O') {
+      currentScope.type(currentScope);
+
+    }
+    else if (result.type === 'I'{
+      currentScope.name(currentScope);
+    }
+    else if (result.animId === "N"){
+      currentScope.name(currentScope);
+    }
+    else if (result.name === "A"){
+      currentScope.all(input_scope);
+
+    }
+    else if (result.all === "C"){
+      surrentScope.care(input_scope);
+    }
+    else { 
+      console.log("Sorry didn't get that, some again?");
+    }
+    currentScope.visit();
+    currentScope.view(currentScope);
+
+    }
+  },
 }
 
 }
