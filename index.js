@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var prompt = require('prompt')
+var prompt = require('prompt');
   prompt.start();
   prompt.message = '';
 
@@ -17,14 +17,14 @@ connection.connect(function(err){
     return;
 
 
-  };
+  }
   
 console.log('connected as id ' + connection.threadId);
     });
 
 var zoo = {
   welcome : function(){
-    console.log("Welcome to the Zoo And Friends App~")
+    console.log("Welcome to the Zoo And Friends App~");
   },
   menu: function(){
     var à = +'/r/n'+
@@ -34,7 +34,7 @@ var zoo = {
       'Enter (V): ------> to Visit the animals in the Zoo' à
       'Enter (D): ------> to Adopt an animal from the Zoo' à
       'Enter (Q): ------> to Quit and exit the Zoo' +'/r/n'
-    )
+    );
 
 
 
@@ -46,24 +46,24 @@ var zoo = {
       'name',
       'type', 
       'age',
-      'caretaker_id)'
+      'caretaker_id'
     ], function(err, result){
-       var query = 'insert into animals (name,type,age,caretaker_id) values (?,?,?,?)'
-       var adds = [result.name, result.type, result.age, result.caretaker_id]
+       var query = 'insert into animals (name,type,age,caretaker_id) values (?,?,?,?)';
+       var adds = [result.name, result.type, result.age, result.caretaker_id];
        connection.query(query, adds, function(err,result){
         if (err) {throw err};
         currentScope.menu();
         curretScope.promptUser();
 
-       })
+       });
 
       });
 
-  },
+ 
 
-  },
 currentScope.menu();
 currentScope.promptUser();
+ },
 
   var visit : function(){
     var à = +'/r/n'+
@@ -101,19 +101,41 @@ var view : function(){
 
     }
     else if (result.all === "C"){
-      surrentScope.care(input_scope);
+      currentScope.care(input_scope);
     }
     else { 
-      console.log("Sorry didn't get that, some again?");
+      console.log("Sorry didn't get that, come again?");
     }
     currentScope.visit();
     currentScope.view(currentScope);
 
     }
   },
-}
+
+var type : function(input_scope){
+  var currentScope = input_scope;
+  console.log('Enter animal type to find how many animals we have of those type.');
+  prompt.get([
+    '->',
+    'animal_type'],
+  function (err,result){
+    var query = 'select type, count(*) from animals where type =?';
+    var userInputType = result.animal.type;
+    connection.query(query,userInputType, function(err, results){
+      console.log(results);
+      currentScope.menu();
+      currentScope.promptUser();
+
+    }
+  })
+},
+
+var care: function(input_scope){
+ var currentScope = input_scope;
+ console.log("Enter city name NY/SF");
 
 }
+
 
 
 connection.end();
