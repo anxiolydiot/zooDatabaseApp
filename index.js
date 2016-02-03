@@ -151,7 +151,7 @@ var animID: function(input_scope){
   'animal_id'],
   function(err, result){
     var query = 'select * from animals where id  = ?';
-    var userInputAnimID = results.animal_id;
+    var userInputAnimID = result.animal_id;
     connection.query(query,userInputAnimID, function(err,result){
       if (err) {throw err}
       console.log(result);
@@ -163,6 +163,85 @@ var animID: function(input_scope){
 });
 
 },
+var name: function(input_scope){
+  var currentScope = input_scope;
+  prompt.get([
+  '->',
+  'animal_name'],
+  function(err, result){
+    var query = 'select * from animals where name  = ?';
+    var userInputAnimName = result.animal_name;
+    connection.query(query,userInputAnimName, function(err,result){
+      if (err) {throw err}
+      console.log(result);
+      currentScope.visit();
+      currentScope.view(currentScope);
+          }
+  
+});
+
+},
+
+var all: function(input_scope){
+  var currentScope = input_scope;
+  prompt.get([
+  '->',
+  'animal_all'],
+  function(err, result){
+    var query = 'select count(*) from animals';
+    var userInputAnimAll = result.animal_all;
+    connection.query(query,userInputAnimAll, function(err,result){
+      if (err) {throw err}
+      console.log(result);
+      currentScope.visit();
+      currentScope.view(currentScope);
+          }
+  
+});
+
+},
+
+var update: function(input_scope){
+  var currentScope = input_scope;
+  var requiredArray = [
+    '--->',
+    'id',
+    'new_name',
+    'new_age',
+    'new_type',
+    'new_caretaker_id']
+  //var userArray = [];
+  prompt.get(requiredArray,
+    function(err,result){
+      var query = 'update animals set name=?,age=?,type=? where id=?'
+      // var replace = .replace
+      // var userUpdate = function(){
+      //   for (var i = requiredArray.length - 1; i >= 0; i--) {
+      //     requiredArray[i].replace("'","")+replace;
+      //     userArray.push(i);
+      //   };
+      // userUpdate();
+      // var userSpecifies = userArray;
+      var userUpdate = [
+      result.id,
+      result.new_name,
+      result.new_age,
+      result.new_type,
+      result.new_caretaker_id];
+
+      }
+    connection.query(query,userSpecifies,function(err,result){
+      if (err) {throw error}
+      console.log(result);
+    }
+    }
+
+}
+
+
+
+
+
   
   
 
