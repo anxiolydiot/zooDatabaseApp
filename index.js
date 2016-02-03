@@ -126,15 +126,46 @@ var type : function(input_scope){
       currentScope.menu();
       currentScope.promptUser();
 
-    }
-  })
+    });
+  });
 },
 
 var care: function(input_scope){
  var currentScope = input_scope;
  console.log("Enter city name NY/SF");
+ prompt.get([
+  '->',
+  'city_name'], 
+  function(err, result){
+  connection.query('select (*)') // come back when I figure out what this is askoing me to get 
 
-}
+
+ }
+
+},
+
+var animID: function(input_scope){
+  var currentScope = input_scope;
+  prompt.get([
+  '->',
+  'animal_id'],
+  function(err, result){
+    var query = 'select * from animals where id  = ?';
+    var userInputAnimID = results.animal_id;
+    connection.query(query,userInputAnimID, function(err,result){
+      if (err) {throw err}
+      console.log(result);
+      currentScope.visit();
+      currentScope.view(currentScope);
+
+    }
+  
+});
+
+},
+  
+  
+
 
 
 
